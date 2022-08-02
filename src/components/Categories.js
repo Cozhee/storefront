@@ -2,30 +2,32 @@ import { connect } from 'react-redux'
 import { newActive, reset } from "../store/catagories";
 import CategoryCard from "./CategoryCard";
 import Grid from '@mui/material/Grid'
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 function Categories(props) {
 
     const { activeCategory, categories } = props
-    console.log(categories)
-    console.log(activeCategory)
 
     let category = categories.map((item, idx) => {
         return (
-            <Grid item xs={3}>
-                <CategoryCard key={idx} newActive={newActive} category={item}/>
+            <Grid key={idx} item>
+                <CategoryCard newActive={newActive} category={item}/>
             </Grid>
         )
     })
 
     return (
         <>
-            <h1>Active Categories</h1>
-            <h3>{activeCategory}</h3>
-
             <h1>Categories</h1>
             <Grid spacing={2} container>
                 {category}
             </Grid>
+            <Box m={5} sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Typography variant="h2">
+                    {activeCategory}
+                </Typography>
+            </Box>
         </>
 
     )

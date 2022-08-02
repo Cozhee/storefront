@@ -1,4 +1,3 @@
-import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -12,13 +11,18 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { useState } from "react";
 
-const drawerWidth = 240;
-const test = 10
-const navItems = [`Cart (${test})`];
+import { useSelector } from "react-redux";
 
 function DrawerAppBar(props) {
-    const [mobileOpen, setMobileOpen] = React.useState(false);
+
+    const drawerWidth = 240;
+    const cartItem = useSelector(state => state.cart)
+    const test = cartItem.length
+    const navItems = [`Cart (${test})`];
+
+    const [mobileOpen, setMobileOpen] = useState(false);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);

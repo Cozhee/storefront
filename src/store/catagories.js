@@ -4,31 +4,17 @@ const initialState = {
         {name: 'Hats', displayName: 'Ball Caps', desc: 'Keeps the sun out of your eyes'},
         {name: 'Cleats', displayName: 'Cleats', desc: 'Helps with traction when running on dirt'}
     ],
-    activeCategory: 'Baseball Bat'
+    activeCategory: ''
 }
 
 function categoryReducer(state = initialState, action) {
     let { type, payload } = action
 
     switch(type) {
-        case 'HATS':
+        case 'SELECT_CATEGORY':
             return {
-                ...state, activeCategory: 'Baseball Cap'
+                ...state, activeCategory: payload
             }
-
-        case 'CLEATS':
-            return {
-                ...state, activeCategory: 'Cleats'
-            }
-
-        case 'BATS':
-            return {
-                ...state, activeCategory: 'Baseball Bat'
-            }
-
-        case 'CLEAR':
-            return initialState
-
         default:
             return state
     }
@@ -37,7 +23,8 @@ function categoryReducer(state = initialState, action) {
 export const newActive = (category) => {
     console.log(category)
     return {
-        type: category
+        type: 'SELECT_CATEGORY',
+        payload: category
     }
 }
 
